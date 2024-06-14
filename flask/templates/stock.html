@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    stock
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block body %}
+<h1>make the investing more easy</h1>
+<form action="/search" method="post">
+    <label for="stock">stock number</label>
+    <input type="text" id="stock" name="stock" autofocus placeholder="stock name">
+    <button type="submit">search</button>
+</form>
+<form action="/low valuation" method="post">
+    <button> low valuation </button>
+    <h2>basic on RSI</h2>
+</form>
+
+{% endblock %}
