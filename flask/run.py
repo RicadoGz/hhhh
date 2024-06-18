@@ -5,10 +5,10 @@ import os
 import pandas as pd
 import mplfinance as mpf
 import matplotlib
+import asyncio
 matplotlib.use('Agg') 
 from function.rsi import main as rsi_main
 from tempfile import NamedTemporaryFile
-
 
 app = Flask(__name__,static_folder='static')
 
@@ -46,8 +46,6 @@ def search():
     generate_plot(selected_data, stock, img_path)
     return render_template('mar.html', stock=stock, img_path=img_filename)
     
-
-
     
 def generate_plot(data, stock, path):
     mpf.plot(data, type='candle', volume=True, style='charles', 
@@ -58,7 +56,9 @@ def mar():
     return render_template('mar.html')
 @app.route('/rsi',methods=['GET', 'POST'])
 def rsi():
-    low_rsi_stocks = rsi_main()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    low_rsi_stocks = loop.run_until_complete(rsi_main())
     return render_template('rsi.html',first=low_rsi_stocks)
 
 if __name__ == '__main__':
