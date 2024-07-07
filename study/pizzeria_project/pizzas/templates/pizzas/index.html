@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizzeria</title>
+</head>
+<body>
+    <h1>Pizzas</h1>
+    <ul>
+        {% for pizza in pizzas %}
+            <li>{{ pizza.name }}</li>
+            <ul>
+                {% for topping in toppings %}
+                    {% if topping.pizza == pizza %}
+                        <li>{{ topping.name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>

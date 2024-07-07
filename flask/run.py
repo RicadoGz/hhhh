@@ -8,13 +8,15 @@ import matplotlib
 import asyncio
 matplotlib.use('Agg') 
 from function.rsi import main as rsi_main
+from function.rsiforcdr import main as rsi_mains
 from tempfile import NamedTemporaryFile
+from datetime import datetime, timedelta
 
 app = Flask(__name__,static_folder='static')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('stock.html')
 
 @app.route('/stock')
 def stock():
@@ -28,7 +30,9 @@ def ability():
 def search():
     stock = request.form.get('stock')
     ticker = yf.Ticker(stock)
-    stock_data = yf.download(stock, start="2022-01-01", end="2023-01-01")
+    end_date = datetime.now().strftime('%Y-%m-%d')
+    start_date = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
+    stock_data = yf.download(stock, start=start_date, end=end_date)
     selected_data = stock_data[['Open', 'High', 'Low', 'Close', 'Volume']]
 
 
@@ -60,6 +64,11 @@ def rsi():
     asyncio.set_event_loop(loop)
     low_rsi_stocks = loop.run_until_complete(rsi_main())
     return render_template('rsi.html',first=low_rsi_stocks)
-
+@app.route('/cdr',methods=['GET', 'POST'])
+def cdr():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    low_rsi_stocks = loop.run_until_complete(rsi_mains())
+    return render_template('cdr.html',first=low_rsi_stocks)
 if __name__ == '__main__':
     app.run(debug=True)
