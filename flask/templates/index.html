@@ -4,10 +4,8 @@
 {% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 {% endblock %}
 {% block style %}
-
 {% endblock %}
 {% block body %}
 <nav class="navbar">
@@ -27,9 +25,10 @@
 </nav>
 <form class="c">
     <h1>RICARDO GAO</h1>
-    <h1>gaozhe0011@gmail.com</h1>
-    <h1>+1 382 885 2156</h1>
-    <h1>Canada,ON</h1>
+    <h2>gaozhe0011@gmail.com</h2>
+    <h2>+1 382 885 2156</h2>
+    <h3><a href="https://www.linkedin.com/in/ricardo-gao">LinkedIn Profile</a></h3>
+    <h4>Canada,ON</h4>
 </form>
 <div class="container">
     <div class="card" id="project1">
@@ -47,11 +46,10 @@
         window.location.href = "{{ url_for('stock') }}";
     });
     document.getElementById('project2').addEventListener('click', function() {
-        window.location.href = "#"; // 替换为实际的 URL
+        window.location.href = "http://127.0.0.1:8000/game/";// 替换为实际的 URL
     });
     document.getElementById('project3').addEventListener('click', function() {
         window.location.href = "#"; // 替换为实际的 URL
     });
 </script>
-
 {% endblock %}
