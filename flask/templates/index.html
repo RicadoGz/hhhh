@@ -15,7 +15,7 @@
             <a href="#">Project</a>
             <ul class="dropdown-menu">
                 <li><a href="{{ url_for('stock') }}">RSI STOCK</a></li>
-                <li><a href="#">BLACKJACK</a></li>
+                <li><a href="http://127.0.0.1:8000/game/">BLACKJACK</a></li>
                 <li><a href="#">not now</a></li>
             </ul>
         </li>
@@ -32,24 +32,51 @@
 </form>
 <div class="container">
     <div class="card" id="project1">
+        <div class="overlay">
+            <button class="btn-hover" id="logic1">logic</button>
+            <button class="btn-hover" id="run1">run</button>
+        </div>
         <h2>RSI STOCK PROJECT</h2>
     </div>
     <div class="card" id="project2">
+        <div class="overlay">
+            <button class="btn-hover" id="logic2">logic</button>
+            <button class="btn-hover" id="run2">run</button>
+        </div>
         <h2>BLACKJACK PROJECT</h2>
     </div>
     <div class="card" id="project3">
+        <div class="overlay">
+            <button class="btn-hover" id="logic3" >logic</button>
+            <button class="btn-hover" id="run3">run</button>
+        </div>
         <h2>not now</h2>
     </div>
 </div>
 <script>
-    document.getElementById('project1').addEventListener('click', function() {
+    document.getElementById('run1').addEventListener('click', function() {
         window.location.href = "{{ url_for('stock') }}";
     });
-    document.getElementById('project2').addEventListener('click', function() {
-        window.location.href = "http://127.0.0.1:8000/game/";// 替换为实际的 URL
+    document.getElementById('run2').addEventListener('click', function() {
+        window.location.href = "http://127.0.0.1:8000/game/";
     });
-    document.getElementById('project3').addEventListener('click', function() {
-        window.location.href = "#"; // 替换为实际的 URL
+    document.getElementById('run3').addEventListener('click', function() {
+        window.location.href = "#"; 
+    });
+    document.getElementById('logic1').addEventListener('click', function() {
+        event.stopPropagation();
+        // prevent to point the father element
+        window.location.href = "{{ url_for('logic1') }}";
+    });
+    document.getElementById('logic2').addEventListener('click', function() {
+        event.stopPropagation();
+        // prevent to point the father element
+        window.location.href = "{{ url_for('logic2') }}";
+    });
+    document.getElementById('logic3').addEventListener('click', function() {
+        event.stopPropagation();
+        // prevent to point the father element
+        window.location.href = "#";
     });
 </script>
 {% endblock %}

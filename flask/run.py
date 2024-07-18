@@ -70,6 +70,15 @@ def cdr():
     asyncio.set_event_loop(loop)
     low_rsi_stocks = loop.run_until_complete(rsi_mains())
     return render_template('cdr.html',first=low_rsi_stocks)
+
+@app.route('/logic1')
+def logic1():
+    return render_template('logic1.html')
+
+@app.route('/logic2')
+def logic2():
+    return render_template('logic2.html')
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
