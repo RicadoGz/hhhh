@@ -16,7 +16,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{{ url_for('stock') }}">RSI STOCK</a></li>
                 <li><a href="http://127.0.0.1:8000/game/">BLACKJACK</a></li>
-                <li><a href="#">not now</a></li>
+                <li><a href="#">small-project</a></li>
             </ul>
         </li>
         <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -28,6 +28,7 @@
     <h2>gaozhe0011@gmail.com</h2>
     <h2>+1 382 885 2156</h2>
     <h3><a href="https://www.linkedin.com/in/ricardo-gao">LinkedIn Profile</a></h3>
+    <h3><a href="https://github.com/RicadoGz">Github</a></h3>
     <h4>Canada,ON</h4>
 </form>
 <div class="container">
@@ -50,9 +51,10 @@
             <button class="btn-hover" id="logic3" >logic</button>
             <button class="btn-hover" id="run3">run</button>
         </div>
-        <h2>not now</h2>
+        <h2>small-project</h2>
     </div>
 </div>
+
 <script>
     document.getElementById('run1').addEventListener('click', function() {
         window.location.href = "{{ url_for('stock') }}";
