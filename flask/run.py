@@ -6,11 +6,18 @@ import pandas as pd
 import mplfinance as mpf
 import matplotlib
 import asyncio
-matplotlib.use('Agg') 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+from scroll import url_fun, create_driver, open_url, scroll_to_end, get_company_names
 from function.rsi import main as rsi_main
 from function.rsiforcdr import main as rsi_mains
 from tempfile import NamedTemporaryFile
 from datetime import datetime, timedelta
+
 
 app = Flask(__name__,static_folder='static')
 
@@ -78,6 +85,28 @@ def logic1():
 @app.route('/logic2')
 def logic2():
     return render_template('logic2.html')
+@app.route('/companyindex')
+def companyindex():
+    return render_template('company/index2.html')
+@app.route('/company',methods=['GET','POST'])
+def company():
+    if request.method == 'POST':
+        basic='https://www.google.ca/maps/search/software+company/@'
+        address = request.form['address']
+        z=request.form['z']
+        page=request.form['page']
+        page=int(page)
+        if address and z:
+            url=url_fun(basic,address,z)
+            driver=create_driver()
+            open_url(driver,url)
+            scroll_to_end(driver,page)
+            name=get_company_names(driver)
+            driver.quit()
+        else:
+            return render_template('company/wrong.html')
+ 
+    return render_template('company/company.html', name = name)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

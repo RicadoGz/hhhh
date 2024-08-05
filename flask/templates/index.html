@@ -15,7 +15,7 @@
             <a href="#">Project</a>
             <ul class="dropdown-menu">
                 <li><a href="{{ url_for('stock') }}">RSI STOCK</a></li>
-                <li><a href="http://127.0.0.1:8000/game/">BLACKJACK</a></li>
+                <li><a href="http://127.0.0.1:8000/game/">Automatically find jobs </a></li>
                 <li><a href="#">small-project</a></li>
             </ul>
         </li>
@@ -25,10 +25,10 @@
 </nav>
 <form class="c">
     <h1>RICARDO GAO</h1>
-    <h2>gaozhe0011@gmail.com</h2>
     <h2>+1 382 885 2156</h2>
     <h3><a href="https://www.linkedin.com/in/ricardo-gao">LinkedIn Profile</a></h3>
     <h3><a href="https://github.com/RicadoGz">Github</a></h3>
+    <h3><a href="gaozhe0011@gmail.com">email</a></h3>
     <h4>Canada,ON</h4>
 </form>
 <div class="container">
@@ -60,7 +60,7 @@
         window.location.href = "{{ url_for('stock') }}";
     });
     document.getElementById('run2').addEventListener('click', function() {
-        window.location.href = "http://127.0.0.1:8000/game/";
+        window.location.href = "{{url_for('companyindex')}}";
     });
     document.getElementById('run3').addEventListener('click', function() {
         window.location.href = "#"; 
